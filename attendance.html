@@ -44,7 +44,7 @@
 				<div class="bg-white rounded-lg shadow p-4 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between">
 					<div>
 						<h3 class="text-sm text-gray-500">Current Time</h3>
-						<p id="current-time" class="text-3xl sm:text-4xl font-bold">00:00AM</p>
+						<p id="current-time" class="js-clock text-3xl sm:text-4xl font-bold">Loading...</p>
 					</div>
 				</div>
 			</section>
@@ -78,7 +78,13 @@
 				</div>
 			</aside>
 		</main>
-
+		<script type="importmap">
+    {
+      "imports": {
+        "dayjs": "./node_modules/dayjs/esm/index.js" 
+      }
+    }
+		</script>
 		<script type="module" src="./scripts/attendance.js"></script>
 	</body>
 </html>
