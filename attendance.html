@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<title>Attendance Checker</title>
+		<link rel="stylesheet" href="styles/tw-output.css" />
+	</head>
+	<body class="bg-gray-50 text-gray-800 min-h-screen font-sans">
+		<header class="bg-white shadow-sm">
+			<div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 sm:py-6">
+				<h1 class="text-lg sm:text-2xl font-semibold">Attendance Checker</h1>
+			</div>
+		</header>
+
+		<main class="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8 grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
+			<section class="lg:col-span-2 space-y-6">
+				<!-- Input section -->
+				<div class="bg-white rounded-lg shadow p-4 sm:p-6">
+					<h2 class="text-lg font-medium mb-3">Input Student ID here</h2>
+					<div class="flex flex-col sm:flex-row gap-3">
+						<input aria-label="Student ID" placeholder="e.g. 2025-XXXXXX" class="flex-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-400 mb-2 sm:mb-0" />
+						<button class="w-full sm:w-auto px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">Log</button>
+					</div>
+				</div>
+
+				<!-- Class info -->
+				<div class="bg-white rounded-lg shadow p-4 sm:p-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
+					<div class="sm:col-span-1">
+						<h3 class="text-sm text-gray-500">Start Time</h3>
+						<p id="start-time" class="text-lg font-semibold">09:00AM</p>
+					</div>
+					<div class="sm:col-span-1">
+						<h3 class="text-sm text-gray-500">Subject</h3>
+						<p id="subject" class="text-lg font-semibold">Placeholder Subject</p>
+					</div>
+					<div class="sm:col-span-1">
+						<h3 class="text-sm text-gray-500">Date</h3>
+						<p id="date" class="text-lg font-semibold">YYYY-MM-DD</p>
+					</div>
+				</div>
+
+				<!-- Current time display (no scripts; placeholder only) -->
+				<div class="bg-white rounded-lg shadow p-4 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between">
+					<div>
+						<h3 class="text-sm text-gray-500">Current Time</h3>
+						<p id="current-time" class="text-3xl sm:text-4xl font-bold">00:00AM</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- Side section: student table -->
+			<aside class="bg-white rounded-lg shadow p-4 sm:p-6">
+				<h2 class="text-lg font-medium mb-4">Students</h2>
+				<div class="overflow-x-auto lg:overflow-hidden">
+				<table class="w-full min-w-[320px] table-auto text-sm">
+					<thead>
+						<tr class="text-left text-gray-600">
+							<th class="pb-2">Name</th>
+							<th class="pb-2">Status</th>
+						</tr>
+					</thead>
+					<tbody class="divide-y">
+						<tr>
+							<td class="py-3">Student 1</td>
+							<td class="py-3"><span class="px-2 py-1 text-xs rounded-full bg-red-100 text-red-700">Absent</span></td>
+						</tr>
+						<tr>
+							<td class="py-3">Student Two</td>
+							<td class="py-3"><span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-700">Present</span></td>
+						</tr>
+						<tr>
+							<td class="py-3">Student Three</td>
+							<td class="py-3"><span class="px-2 py-1 text-xs rounded-full bg-yellow-100 text-yellow-800">Late</span></td>
+						</tr>
+					</tbody>
+				</table>
+				</div>
+			</aside>
+		</main>
+
+		<script type="module" src="./scripts/attendance.js"></script>
+	</body>
+</html>
