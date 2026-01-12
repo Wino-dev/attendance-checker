@@ -19,8 +19,8 @@
 				<div class="bg-white rounded-lg shadow p-4 sm:p-6">
 					<h2 class="text-lg font-medium mb-3">Input Student ID here</h2>
 					<div class="flex flex-col sm:flex-row gap-3">
-						<input aria-label="Student ID" placeholder="e.g. 2025-XXXXXX" class="flex-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-400 mb-2 sm:mb-0" />
-						<button class="w-full sm:w-auto px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">Log</button>
+						<input aria-label="Student ID" placeholder="e.g. 2025-XXXXXX" class="js-id-input flex-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-400 mb-2 sm:mb-0" />
+						<button class="js-log-button w-full sm:w-auto px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">Log</button>
 					</div>
 				</div>
 
@@ -60,19 +60,8 @@
 							<th class="pb-2">Status</th>
 						</tr>
 					</thead>
-					<tbody class="divide-y">
-						<tr>
-							<td class="py-3">Student 1</td>
-							<td class="py-3"><span class="px-2 py-1 text-xs rounded-full bg-red-100 text-red-700">Absent</span></td>
-						</tr>
-						<tr>
-							<td class="py-3">Student Two</td>
-							<td class="py-3"><span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-700">Present</span></td>
-						</tr>
-						<tr>
-							<td class="py-3">Student Three</td>
-							<td class="py-3"><span class="px-2 py-1 text-xs rounded-full bg-yellow-100 text-yellow-800">Late</span></td>
-						</tr>
+					<tbody class="js-student-table divide-y">
+					
 					</tbody>
 				</table>
 				</div>
@@ -85,6 +74,6 @@
       }
     }
 		</script>
-		<script type="module" src="./scripts/attendance.js"></script>
+		<script type="module" src="./scripts/attendance/attendance.js"></script>
 	</body>
 </html>
