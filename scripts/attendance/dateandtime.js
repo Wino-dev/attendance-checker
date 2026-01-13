@@ -4,7 +4,7 @@ setInterval(() => {
   let minute = (time.getMinutes()).toString();
   let meridiem;
 
-  if (hour > 12) {
+  if (hour >= 12) {
     hour -= 12;
     meridiem = "PM";
   } else meridiem = "AM"
