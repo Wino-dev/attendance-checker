@@ -4,6 +4,7 @@ import { renderStats } from "./stats.js";
 import { renderTable } from "./table.js";
 import { updateStudentStatus } from "./studentFunc.js";
 import { getStartTimeDate } from "./subjectFunc.js";
+import { updateMessageBox } from "./message.js";
 
 document.querySelector('.js-log-button').addEventListener('click', () => {
   
@@ -26,6 +27,7 @@ document.querySelector('.js-log-button').addEventListener('click', () => {
     updateStudentStatus(matchingStudent, startTime);
     renderStats(students);
     renderTable();
+    updateMessageBox(matchingStudent.name, matchingStudent.status);
   } else {
     alert("Student doesn't exist")
   }
