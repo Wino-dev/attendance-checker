@@ -30,9 +30,9 @@
         <button class="flex h-min">
           <label for="import-students-file" class="bg-white shadow-[0_0_15px_5px_rgba(0,0,0,0.03)] text-center w-full mx-4 px-6 md:px-14 py-2 md:py-6 rounded-2xl transition-colors duration-100 hover:bg-emerald-300 hover:cursor-pointer">
             <p class="font-bold">Import Students List</p>
-            <p>No File Chosen</p>
+            <p class="js-students-list-chosen">No File Chosen</p>
           </label>
-          <input type="file" id="import-students-file" name="import-students-file" class="hidden">
+          <input type="file" id="import-students-file" name="import-students-file" class="hidden" accept=".xlsx">
         </button>
         <button class="flex h-min">
           <label for="import-subjects-file" class="bg-white shadow-[0_0_15px_5px_rgba(0,0,0,0.03)] text-center w-full mx-4 px-6 md:px-14 py-2 md:py-6 rounded-2xl transition-colors duration-100 hover:bg-emerald-300 hover:cursor-pointer">
@@ -54,6 +54,6 @@
       </div>
     </aside>
   </main>
-  <script type="module" href="./scripts/index/main.js"></script>
+  <script type="module" src="./scripts/index/main.js"></script>
 </body>
 </html>
