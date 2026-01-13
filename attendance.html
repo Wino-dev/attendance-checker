@@ -15,6 +15,11 @@
 
 		<main class="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8 grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
 			<section class="lg:col-span-2 space-y-6">
+				<div class="bg-white rounded-lg shadow p-4 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between">
+					<div>
+						<p id="current-time" class="text-lg ">Welcome! Pogi, Wino</p>
+					</div>
+				</div>
 				<!-- Input section -->
 				<div class="bg-white rounded-lg shadow p-4 sm:p-6">
 					<h2 class="text-lg font-medium mb-3">Input Student ID here</h2>
@@ -28,15 +33,15 @@
 				<div class="bg-white rounded-lg shadow p-4 sm:p-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
 					<div class="sm:col-span-1">
 						<h3 class="text-sm text-gray-500">Start Time</h3>
-						<p id="start-time" class="text-lg font-semibold">09:00AM</p>
+						<p id="start-time" class="text-lg font-semibold">Loading...</p>
 					</div>
 					<div class="sm:col-span-1">
 						<h3 class="text-sm text-gray-500">Subject</h3>
-						<p id="subject" class="text-lg font-semibold">Placeholder Subject</p>
+						<p id="subject" class="text-lg font-semibold">Loading...</p>
 					</div>
 					<div class="sm:col-span-1">
 						<h3 class="text-sm text-gray-500">Date</h3>
-						<p id="date" class="text-lg font-semibold">YYYY-MM-DD</p>
+						<p id="date" class="text-lg font-semibold">MM-DD-YYYY</p>
 					</div>
 				</div>
 
@@ -44,36 +49,45 @@
 				<div class="bg-white rounded-lg shadow p-4 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between">
 					<div>
 						<h3 class="text-sm text-gray-500">Current Time</h3>
-						<p id="current-time" class="js-clock text-3xl sm:text-4xl font-bold">Loading...</p>
+						<p id="current-time" class="js-clock text-3xl sm:text-7xl font-bold">Loading...</p>
 					</div>
 				</div>
+
+				<div class="bg-white rounded-lg shadow p-4 sm:p-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
+					<div class="sm:col-span-1">
+						<h3 class="text-sm text-gray-500">Present</h3>
+						<p id="present-value" class="text-lg font-semibold">4</p>
+					</div>
+					<div class="sm:col-span-1">
+						<h3 class="text-sm text-gray-500">Late</h3>
+						<p id="late-value" class="text-lg font-semibold">6</p>
+					</div>
+					<div class="sm:col-span-1">
+						<h3 class="text-sm text-gray-500">Absent</h3>
+						<p id="absent-value" class="text-lg font-semibold">7</p>
+					</div>
+				</div>	
+				
 			</section>
 
 			<!-- Side section: student table -->
-			<aside class="bg-white rounded-lg shadow p-4 sm:p-6">
+			<aside class="bg-white rounded-lg shadow p-4 sm:p-6 h-[39.6rem]">
 				<h2 class="text-lg font-medium mb-4">Students</h2>
-				<div class="overflow-x-auto lg:overflow-hidden">
-				<table class="w-full min-w-[320px] table-auto text-sm">
-					<thead>
-						<tr class="text-left text-gray-600">
-							<th class="pb-2">Name</th>
-							<th class="pb-2">Status</th>
-						</tr>
-					</thead>
-					<tbody class="js-student-table divide-y">
-					
-					</tbody>
-				</table>
+				<div class="overflow-x-auto lg:overflow-x-hidden h-[82%]">
+					<table class="w-full min-w-[320px] table-fixed text-sm overflow-y-scroll">
+						<thead>
+							<tr class="text-left text-gray-600">
+								<th class="pb-2">Name</th>
+								<th class="pb-2 pl-5">Status</th>
+							</tr>
+						</thead>
+						<tbody class="js-student-table divide-y">
+						</tbody>
+					</table>
 				</div>
+				<button class="js-log-button w-full mt-5 px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700">Save as XLSX</button>
 			</aside>
 		</main>
-		<script type="importmap">
-    {
-      "imports": {
-        "dayjs": "./node_modules/dayjs/esm/index.js" 
-      }
-    }
-		</script>
 		<script type="module" src="./scripts/attendance/attendance.js"></script>
 	</body>
 </html>
