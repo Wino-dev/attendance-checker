@@ -6,6 +6,6 @@ export function initExportXLSX(subjectName, date) {
     const workbook = XLSX.utils.book_new();
     const worksheet = XLSX.utils.json_to_sheet(students);
     XLSX.utils.book_append_sheet(workbook, worksheet, date);
-    XLSX.writeFile(workbook, `${subjectName + '-' + date}.xlsx`); 
+    XLSX.writeFile(workbook, `${subjectName + '-' + date}.xlsx`);
   })
 }

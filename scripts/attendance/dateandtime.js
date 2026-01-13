@@ -1,7 +1,6 @@
-const time = new Date();
-
 export function renderTime() {
   setInterval(() => {
+    const time = new Date();
     let hour = time.getHours();
     let minute = (time.getMinutes()).toString();
     let meridiem;
@@ -20,12 +19,12 @@ export function renderTime() {
     }
 
     document.querySelector('.js-clock').innerText = `${hour}:${minute} ${meridiem}`;
-    
   },1000);
 }
 
 
 export function renderDate() {
+  const time = new Date();
   const month = time.toLocaleString('default', {month: 'long'});
   const day = time.getDate();
   const year = time.getFullYear();
@@ -37,6 +36,7 @@ export function renderDate() {
 
 
 export function initCurrentDate() {
+  const time = new Date();
   const month = time.getMonth() + 1;
   const day = time.getDate();
   const year = time.getFullYear();
