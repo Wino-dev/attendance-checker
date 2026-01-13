@@ -17,7 +17,7 @@ export function renderTable() {
     tableHTML +=  `
       <tr>
         <td class="py-3">${student.name}</td>
-        <td class="py-3"><span class="px-2 py-1 text-xs rounded-full ${studentBackgroundMarker(student)}">${student.status}</span></td>
+        <td class="py-3 pl-5"><span class="px-2 py-1 text-xs rounded-full ${studentBackgroundMarker(student)}">${student.status}</span></td>
       </tr>
     `;
   });
