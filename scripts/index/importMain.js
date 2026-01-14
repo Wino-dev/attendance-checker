@@ -1,6 +1,6 @@
 import * as XLSX from '../../node_modules/xlsx/xlsx.mjs';
 
-function importButtonFunc(buttonId, properties, fileDisplayOnButton, objectLocalStorageKey, nameLocalStorageKey, customFunction) {
+function importButtonFunc(buttonId, properties, fileDisplayOnButton, objectLocalStorageKey, nameLocalStorageKey) {
   
   if (localStorage.getItem(objectLocalStorageKey)) {
     document.querySelector(fileDisplayOnButton).innerText = localStorage.getItem(nameLocalStorageKey);
@@ -45,6 +45,60 @@ function importButtonFunc(buttonId, properties, fileDisplayOnButton, objectLocal
               checkHasFailed += `Error: ${property} doesn't exist in line ${lineNumber}\n`;
             }
           });
+
+          if (buttonId == 'import-subjects-file') {
+            let startTimeString = object.startTime;
+              if(startTimeString.length == 6) {
+                startTimeString = '0' + startTimeString;
+              }
+
+              if (startTimeString.length != 7) {
+                throw `Invalid format: Invalid Time Format in line ${lineNumber}\n`;
+              }
+
+              let invalidHours = false
+              let invalidMinutes = false
+
+              for (let i = 0; i < 2; i++) {
+                if (isNaN(startTimeString[i])) {
+                  invalidHours = true;
+                }
+              }
+
+              if (invalidHours) {
+                checkHasFailed += `Invalid format: Invalid Hours in line ${lineNumber}\n`;  
+              }
+
+              for (let i = 3; i < 5; i++) {
+                if (isNaN(startTimeString[i])) {
+                  invalidMinutes = true;
+                }
+              }
+
+              if (invalidMinutes) {
+                checkHasFailed += `Invalid format: Invalid Minutes Format in line ${lineNumber}\n`; 
+              }
+
+              if (startTimeString[2] != ':') {
+                throw `Invalid format: Invalid Time Format in line ${lineNumber}\n`;
+              }
+
+              if (Number(startTimeString[3]) > 5) {
+                checkHasFailed += `Invalid format: Too much minutes in line ${lineNumber}\n`; 
+              }
+
+              const meridiem = startTimeString[5] + startTimeString[6];
+
+              if (meridiem != 'AM' && meridiem != 'PM') {
+                checkHasFailed += `Invalid format: Not AM or PM in line ${lineNumber}\n`;
+              }
+
+              let hours = Number(startTimeString[0] + startTimeString[1]);
+
+              if (hours > 12) {
+                checkHasFailed += `Invalid format: Not 12HR format in line ${lineNumber}\n`; 
+              }
+          };
 
           if (checkHasFailed) {
             throw checkHasFailed;
