@@ -14,13 +14,8 @@
   <main class="flex flex-col-reverse items-center md:flex-row justify-between max-w-5xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
     <section class="w-11/12 md:w-8/12 mt-5 md:mt-0 text-center flex flex-col items-center justify-center">
       <div class="font-bold mb-5 bg-white w-fit px-3 py-2 rounded-lg shadow-[0_0_15px_5px_rgba(0,0,0,0.03)]">Subjects</div>
-    <div class="w-full flex flex-wrap justify-center gap-4">
-      <div class="flex flex-wrap justify-center gap-6">
-        <button class="aspect-square h-30 sm:h-45 bg-white shadow-[0_0_15px_5px_rgba(0,0,0,0.03)] rounded-2xl transition-colors duration-100 hover:bg-gray-300 hover:cursor-pointer">button 1</button>
-      </div>
-      <div class="flex flex-wrap justify-center gap-6">
-        <button class="aspect-square h-30 sm:h-45 bg-white shadow-[0_0_15px_5px_rgba(0,0,0,0.03)] rounded-2xl transition-colors duration-100 hover:bg-gray-300 hover:cursor-pointer">button 1</button>
-      </div>
+    <div id="subject-button-container" class="w-full flex flex-wrap justify-center gap-4">
+      <p class="text-sm text-gray-500 text-shadow-md text-shadow-gray-200 font-semibold">Upload both required lists first.</p>
     </div>
       
     </section>
@@ -37,9 +32,9 @@
         <button class="flex h-min">
           <label for="import-subjects-file" class="bg-white shadow-[0_0_15px_5px_rgba(0,0,0,0.03)] text-center w-full mx-4 px-6 md:px-14 py-2 md:py-6 rounded-2xl transition-colors duration-100 hover:bg-emerald-300 hover:cursor-pointer">
             <p class="font-bold">Import Subjects List</p>
-            <p>No File Chosen</p>
+            <p class="js-subjects-list-chosen">No File Chosen</p>
           </label>
-          <input type="file" id="import-subjects-file" name="import-subjects-file" class="hidden">
+          <input type="file" id="import-subjects-file" name="import-subjects-file" class="hidden" accept=".xlsx">
         </button>
       </div>
       <div class="bg-gray-50 shadow-[0_0_15px_5px_rgba(0,0,0,0.03)] w-full flex flex-col py-4 md:py-7 rounded-2xl">
