@@ -33,8 +33,6 @@ export function renderDate() {
   document.getElementById('date').innerText = fullDate;
 }
 
-
-
 export function initCurrentDate() {
   const time = new Date();
   const month = time.getMonth() + 1;
@@ -43,3 +41,25 @@ export function initCurrentDate() {
 
   return `${month}-${day}-${year}`;
 }
+
+export function renderSubjectDetails(selectedSubject) {
+  document.getElementById('subject').innerText = selectedSubject.subjectName;
+  let startTimeString = selectedSubject.startTime;
+  let isHourSingleDigit;
+  if(startTimeString.length == 6) {
+    startTimeString = '0' + startTimeString;
+    isHourSingleDigit = true;
+  }
+
+  let hours = startTimeString[0] + startTimeString[1];
+  let minutes = startTimeString[3] + startTimeString[4];
+  let meridiem = startTimeString[5] + startTimeString[6];
+
+  if (isHourSingleDigit) {
+    hours = startTimeString[1];
+  }
+
+  const startTimeFormatted = `${hours}:${minutes} ${meridiem}`; 
+
+  document.getElementById('start-time').innerText = startTimeFormatted;
+} 
