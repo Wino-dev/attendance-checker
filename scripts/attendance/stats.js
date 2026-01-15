@@ -4,11 +4,11 @@ export function renderStats(students) {
   let presentStudents = 0;
 
   students.forEach((student) => {
-    if (student.status == 'Absent') {
+    if (student.Status == 'Absent') {
       absentStudents++;
-    } else if (student.status == 'Late') {
+    } else if (student.Status == 'Late') {
       lateStudents++;
-    } else if (student.status == 'Present') {
+    } else if (student.Status == 'Present') {
       presentStudents++;
     }
   });

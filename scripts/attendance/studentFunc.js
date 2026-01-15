@@ -1,8 +1,8 @@
 export function updateStudentStatus(student, startTime) {
   const currentTime = new Date();
   if (currentTime <= startTime) {
-    student.status = 'Present';
+    student.Status = 'Present';
   } else {
-    student.status = 'Late';
+    student.Status = 'Late';
   }
 }

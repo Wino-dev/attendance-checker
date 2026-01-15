@@ -7,13 +7,13 @@ function recentLog(studentName) {
   `;
 };
 
-export function updateMessageBox(studentName, status) {
+export function updateMessageBox(student) {
   setTimeout(() => {
-    recentLog(studentName);
+    recentLog(student.Name);
   }, 2000);
   messageBox.innerHTML = `
     <p class="font-bold w-fit pr-2">Added:</p>
-		<p class="w-fit pr-2">${studentName}</p>
-    <p class="font-bold w-fit">(${status})</p>
+		<p class="w-fit pr-2">${student.Name}</p>
+    <p class="font-bold w-fit">(${student.Status})</p>
   `;
 };

@@ -43,8 +43,8 @@ export function initCurrentDate() {
 }
 
 export function renderSubjectDetails(selectedSubject) {
-  document.getElementById('subject').innerText = selectedSubject.subjectName;
-  let startTimeString = selectedSubject.startTime;
+  document.getElementById('subject').innerText = selectedSubject.Name;
+  let startTimeString = selectedSubject['Start Time'];
   let isHourSingleDigit;
   if(startTimeString.length == 6) {
     startTimeString = '0' + startTimeString;

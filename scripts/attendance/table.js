@@ -6,9 +6,9 @@ export function renderTable() {
   const presentMarker = 'bg-green-100 text-green-700';
 
   function studentBackgroundMarker(student) {
-    if (student.status == 'Absent') { return absentMarker }
-    else if (student.status == 'Late') { return lateMarker }
-    else if (student.status == 'Present') { return presentMarker }
+    if (student.Status == 'Absent') { return absentMarker }
+    else if (student.Status == 'Late') { return lateMarker }
+    else if (student.Status == 'Present') { return presentMarker }
   }
 
   let tableHTML = '';
@@ -16,8 +16,8 @@ export function renderTable() {
   students.forEach((student) => {
     tableHTML +=  `
       <tr>
-        <td class="py-3">${student.studentName}</td>
-        <td class="py-3 pl-5"><span class="px-2 py-1 text-xs rounded-full ${studentBackgroundMarker(student)}">${student.status}</span></td>
+        <td class="py-3">${student.Name}</td>
+        <td class="py-3 pl-5"><span class="px-2 py-1 text-xs rounded-full ${studentBackgroundMarker(student)}">${student.Status}</span></td>
       </tr>
     `;
   });

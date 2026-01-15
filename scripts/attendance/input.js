@@ -17,17 +17,17 @@ export function initLogButton(subject) {
     let matchingStudent;
 
     students.forEach((student) => {
-      if (idInput == student.studentId) {
+      if (idInput == student['Student ID']) {
         matchingStudent = student;
       }
     });
 
     if (matchingStudent) {
-      const startTime = getStartTimeDate(subject.startTime);
+      const startTime = getStartTimeDate(subject['Start Time']);
       updateStudentStatus(matchingStudent, startTime);
       renderStats(students);
       renderTable();
-      updateMessageBox(matchingStudent.studentName, matchingStudent.status);
+      updateMessageBox(matchingStudent);
     } else {
       alert("Student doesn't exist")
     }

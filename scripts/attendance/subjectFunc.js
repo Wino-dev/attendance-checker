@@ -1,7 +1,3 @@
-import { initSelectedSubject, subjects } from "../../data/subjects.js";
-
-const selectedSubject = initSelectedSubject();
-
 export function getStartTimeDate(startTimeString) {
   if(startTimeString.length == 6) {
     startTimeString = '0' + startTimeString;
