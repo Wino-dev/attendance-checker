@@ -1,4 +1,5 @@
 import * as XLSX from '../../node_modules/xlsx/xlsx.mjs';
+import { updateButtonContainer } from './subjectButtons.js';
 
 function importButtonFunc(buttonId, properties, fileDisplayOnButton, objectLocalStorageKey, nameLocalStorageKey) {
   
@@ -7,8 +8,6 @@ function importButtonFunc(buttonId, properties, fileDisplayOnButton, objectLocal
   }
 
   document.getElementById(buttonId).addEventListener('change', (input) => {
-
-    
 
     const file = input.target.files[0];
     const fileReader = new FileReader();
@@ -41,13 +40,18 @@ function importButtonFunc(buttonId, properties, fileDisplayOnButton, objectLocal
           }
 
           properties.forEach((property) => {
+            console.log(`checking property: ${property}`);
             if(!(property in object)){
               checkHasFailed += `Error: ${property} doesn't exist in line ${lineNumber}\n`;
             }
           });
 
+          if (checkHasFailed) {
+            throw checkHasFailed;
+          };
+
           if (buttonId == 'import-subjects-file') {
-            let startTimeString = object.startTime;
+            let startTimeString = object['Start Time'];
               if(startTimeString.length == 6) {
                 startTimeString = '0' + startTimeString;
               }
@@ -109,7 +113,7 @@ function importButtonFunc(buttonId, properties, fileDisplayOnButton, objectLocal
         document.querySelector(fileDisplayOnButton).innerText = file.name;
         localStorage.setItem(objectLocalStorageKey, JSON.stringify(objects));
         console.log(JSON.parse(localStorage.getItem(objectLocalStorageKey)));
-        
+        updateButtonContainer();
       } catch (error) {
         alert(error);
       }  
@@ -122,6 +126,6 @@ function importButtonFunc(buttonId, properties, fileDisplayOnButton, objectLocal
 }
 
 export function initImportButtons() {
-  importButtonFunc('import-subjects-file', ['subjectName','subjectCode','startTime'], '.js-subjects-list-chosen', 'subjects', 'subjectsFileName');
-  importButtonFunc('import-students-file', ['studentName','studentId'], '.js-students-list-chosen', 'students', 'studentsFileName');
+  importButtonFunc('import-subjects-file', ['Name','Code','Start Time'], '.js-subjects-list-chosen', 'subjects', 'subjectsFileName');
+  importButtonFunc('import-students-file', ['Name','Student ID'], '.js-students-list-chosen', 'students', 'studentsFileName');
 }
