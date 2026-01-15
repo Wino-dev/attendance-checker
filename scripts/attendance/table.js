@@ -1,6 +1,4 @@
-import { students } from "../../data/students.js";
-
-export function renderTable() {
+export function renderTable(studentsAttendanceList) {
   const absentMarker = 'bg-red-100 text-red-700';
   const lateMarker = 'bg-yellow-100 text-yellow-800';
   const presentMarker = 'bg-green-100 text-green-700';
@@ -13,7 +11,7 @@ export function renderTable() {
 
   let tableHTML = '';
 
-  students.forEach((student) => {
+  studentsAttendanceList.forEach((student) => {
     tableHTML +=  `
       <tr>
         <td class="py-3">${student.Name}</td>

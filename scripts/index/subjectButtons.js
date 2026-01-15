@@ -4,9 +4,6 @@ export function updateButtonContainer() {
   const subjects = JSON.parse(localStorage.getItem('subjects'));
   const students = JSON.parse(localStorage.getItem('students'));
   try {
-
-    console.log(subjects);
-
     if(!students && !subjects) {
       throw "Upload both required lists first.";
     }

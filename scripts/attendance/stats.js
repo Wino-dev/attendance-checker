@@ -1,9 +1,9 @@
-export function renderStats(students) {
+export function renderStats(studentsAttendanceList) {
   let absentStudents = 0;
   let lateStudents = 0;
   let presentStudents = 0;
 
-  students.forEach((student) => {
+  studentsAttendanceList.forEach((student) => {
     if (student.Status == 'Absent') {
       absentStudents++;
     } else if (student.Status == 'Late') {
