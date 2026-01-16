@@ -16,16 +16,16 @@
       <aside class="w-full md:flex-1 mb-4 md:mb-0">
         <div class="bg-gray-100 text-center flex flex-col mx-auto w-[95%] pt-2 pb-3 sm:pt-4 sm:pb-7 rounded-2xl shadow-[0_0_15px_5px_rgba(0,0,0,0.03)]">
           <h1>Import</h1>
-          <button class="bg-white mt-1 sm:mt-3 mx-2 sm:mx-6 py-3 rounded-2xl shadow-[0_0_15px_1px_rgba(0,0,0,0.03)]">
+          <button class="bg-white mt-1 sm:mt-3 mx-2 sm:mx-6 py-3 rounded-2xl shadow-[0_0_15px_1px_rgba(0,0,0,0.03)] transition-colors duration-100 hover:bg-emerald-300 hover:cursor-pointer"">
             <input class="hidden" id="import-attendance-file" type="file" accept=".xlsx">
             <label for="import-attendance-file">
-              <h1>Attendance File</h1>
+              <h1 class="font-semibold">Attendance File</h1>
               <p id="edit-file-display">No File Chosen</p>
             </label>
           </button>
         </div>
         <div id="export-edited-attendance-div" class="bg-gray-100 text-center hidden flex-col mx-auto w-[95%] pt-2 pb-3 sm:pt-4 sm:pb-7 rounded-2xl shadow-[0_0_15px_5px_rgba(0,0,0,0.03)] mt-3">
-          <button id="export-edited-attendance-button"class="bg-white mt-1 sm:mt-3 mx-2 sm:mx-6 py-3 rounded-2xl shadow-[0_0_15px_1px_rgba(0,0,0,0.03)]">
+          <button id="export-edited-attendance-button" class="transition-colors duration-100 hover:bg-emerald-300 hover:cursor-pointer bg-white mt-1 sm:mt-3 mx-2 sm:mx-6 py-3 rounded-2xl shadow-[0_0_15px_1px_rgba(0,0,0,0.03)]">
             <h1>Save to XLSX</h1>
           </button>
         </div>
