@@ -14,5 +14,5 @@ export function saveXLSX(subjectCode, studentsAttendanceList) {
   worksheet["!cols"] = [ { wch: 35 }, { wch: 15 } ]; 
   XLSX.utils.book_append_sheet(workbook, worksheet, dateString);
   XLSX.utils.sheet_add_aoa(worksheet, [["Name", "Student ID", "Status"]], { origin: "A1" });
-  XLSX.writeFile(workbook, `${subjectCode + '-' + dateString}.xlsx`);
+  XLSX.writeFile(workbook, `${dateString + '-' + subjectCode}.xlsx`);
 }

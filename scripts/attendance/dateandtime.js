@@ -19,7 +19,7 @@ export function renderTime() {
     }
 
     document.querySelector('.js-clock').innerText = `${hour}:${minute} ${meridiem}`;
-  },1000);
+  },500);
 }
 
 
