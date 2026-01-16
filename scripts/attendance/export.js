@@ -12,7 +12,7 @@ export function saveXLSX(subjectCode, studentsAttendanceList) {
   const workbook = XLSX.utils.book_new();
   const worksheet = XLSX.utils.json_to_sheet(studentsAttendanceList);
   worksheet["!cols"] = [ { wch: 35 }, { wch: 15 } ]; 
-  XLSX.utils.book_append_sheet(workbook, worksheet, dateString);
+  XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
   XLSX.utils.sheet_add_aoa(worksheet, [["Name", "Student ID", "Status"]], { origin: "A1" });
   XLSX.writeFile(workbook, `${dateString + '-' + subjectCode}.xlsx`);
 }
