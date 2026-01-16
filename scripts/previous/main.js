@@ -1,0 +1,17 @@
+import { initSelectedSubject } from "../../data/subjects.js";
+import { initStudentsAttendanceList } from "../../data/students.js";
+import { renderChoiceButtons } from "./choice.js";
+
+const selectedSubject = initSelectedSubject();
+const previousListMadeOnSameDate = initStudentsAttendanceList(selectedSubject);
+const retrievedListStatus = localStorage.getItem(`action-taken-${selectedSubject.Code}`)
+
+if (retrievedListStatus != 'new') {
+  const page = document.querySelector('main');
+  page.classList.remove('hidden');
+  renderChoiceButtons(selectedSubject, previousListMadeOnSameDate);
+} else {
+  history.replaceState(null, '', './index.html');
+  window.location.href = './attendance.html';
+}
+

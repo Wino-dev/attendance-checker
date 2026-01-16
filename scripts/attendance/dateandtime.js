@@ -33,11 +33,10 @@ export function renderDate() {
   document.getElementById('date').innerText = fullDate;
 }
 
-export function initCurrentDate() {
-  const time = new Date();
-  const month = time.getMonth() + 1;
-  const day = time.getDate();
-  const year = time.getFullYear();
+export function formatDateJSON(date) {
+  const month = date.Month;
+  const day = date.Day;
+  const year = date.Year;
 
   return `${month}-${day}-${year}`;
 }

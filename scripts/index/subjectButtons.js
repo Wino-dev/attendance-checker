@@ -34,12 +34,8 @@ export function updateButtonContainer() {
     initSubjectButtons();
 
   } catch (error) {
-    console.log('catch worked');
-    console.log(container.innerHTML);
     const errorHTML = `<p class="text-sm text-gray-500 text-shadow-md text-shadow-gray-200 font-semibold">${error}</p>`;
-    console.log(errorHTML)
     container.innerHTML = errorHTML;
-    console.log(container.innerHTML);
   }
 }
 
@@ -47,7 +43,7 @@ function initSubjectButtons() {
   document.querySelectorAll('.js-subject-button').forEach((button) => {
     button.addEventListener('click', () => {
       localStorage.setItem('selectedSubject', button.dataset.subjectCode);
-      window.location.href = './attendance.html';
+      window.location.href = './previous.html';
     })
   })
 }
