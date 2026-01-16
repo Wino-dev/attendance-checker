@@ -34,6 +34,7 @@ export function initStudentsAttendanceList(subject) {
   } else {
 
     const currentDate = new Date();
+
     const currentDateJSON = {
       Month: currentDate.getMonth(),
       Day: currentDate.getDate(),

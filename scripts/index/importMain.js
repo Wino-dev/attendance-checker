@@ -23,8 +23,6 @@ function importButtonFunc(buttonId, properties, fileDisplayOnButton, objectLocal
       const firstSheet = excelFile.Sheets[excelFile.SheetNames[0]];
 
       const objects = XLSX.utils.sheet_to_json(firstSheet);
-      
-      console.log(objects);
 
       let lineNumber = 0;
 
@@ -40,7 +38,6 @@ function importButtonFunc(buttonId, properties, fileDisplayOnButton, objectLocal
           }
 
           properties.forEach((property) => {
-            console.log(`checking property: ${property}`);
             if(!(property in object)){
               checkHasFailed += `Error: ${property} doesn't exist in line ${lineNumber}\n`;
             }
@@ -112,7 +109,6 @@ function importButtonFunc(buttonId, properties, fileDisplayOnButton, objectLocal
         localStorage.setItem(nameLocalStorageKey, file.name);
         document.querySelector(fileDisplayOnButton).innerText = file.name;
         localStorage.setItem(objectLocalStorageKey, JSON.stringify(objects));
-        console.log(JSON.parse(localStorage.getItem(objectLocalStorageKey)));
         updateButtonContainer();
       } catch (error) {
         alert(error);
