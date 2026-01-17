@@ -1,6 +1,7 @@
 import { updateButtonContainer } from './subjectButtons.js';
 import { validateSheetContents } from '../validateImports/validateSheetContents.js';
 import { XLSXtoJSON } from '../utils/importFile.js';
+import { validateFileExtension } from '../validateImports/validateFileExtension.js';
 
 function importButtonFunc(buttonId, properties, fileDisplayOnButton, objectLocalStorageKey, nameLocalStorageKey) {
   
@@ -9,35 +10,36 @@ function importButtonFunc(buttonId, properties, fileDisplayOnButton, objectLocal
   }
 
   document.getElementById(buttonId).addEventListener('change', (input) => {
-
     const file = input.target.files[0];
-    if(!file) {
-      alert('No file selected.');
-      return;
-    }
-
-    if(!file.name.endsWith('.xlsx')) {
-      alert('Please upload a .xlsx file');
-      return;
-    }
-
-    const students = XLSXtoJSON(file);
-
-    try {
-      const errors  = validateSheetContents(students, properties, buttonId);
-
-      if (errors) {
-        throw errors;
-      }
-
-      localStorage.setItem(nameLocalStorageKey, file.name);
-      document.querySelector(fileDisplayOnButton).textContent = file.name;
-      localStorage.setItem(objectLocalStorageKey, JSON.stringify(students));
-      updateButtonContainer();
     
-    } catch (error) {
-      alert(error);
-    }  
+    const fileUploadError = validateFileExtension(file);
+
+    if (fileUploadError) {
+      alert(fileUploadError);
+      return;
+    }
+
+    XLSXtoJSON(file, (error, students) => {
+      if (error) {
+        alert(error);
+        return;
+      }
+      try {
+        const errors  = validateSheetContents(students, properties, buttonId);
+
+        if (errors) {
+          throw errors;
+        }
+
+        localStorage.setItem(nameLocalStorageKey, file.name);
+        document.querySelector(fileDisplayOnButton).textContent = file.name;
+        localStorage.setItem(objectLocalStorageKey, JSON.stringify(students));
+        updateButtonContainer();
+      
+      } catch (error) {
+        alert(error);
+      }
+    });
   });
 }
 
