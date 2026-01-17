@@ -1,35 +1,21 @@
+import { STORAGE_KEYS } from "../../data/storageKeys.js";
+import { jsonToDate, areSameDate, formatDateDisplay } from "../utils/dateutils.js";
+
 export function renderChoiceButtons(selectedSubject, previousListMadeOnSameDate) {
   const choiceMessageContainer = document.getElementById('choice-message');
   let creationDateDesc = '';
 
+  const creationDateStringJSON = JSON.parse(localStorage.getItem(STORAGE_KEYS.attendanceDateCreation(selectedSubject.Code)));
+  const creationDate = jsonToDate(creationDateStringJSON);
 
-  const creationDateStringJSON = JSON.parse(localStorage.getItem(`attendance-date-created-${selectedSubject.Code}`));
-
-  const creationDateJSON = {
-    Month: Number(creationDateStringJSON.Month) - 1,
-    Day: Number(creationDateStringJSON.Day),
-    Year: creationDateStringJSON.Year 
-  }
-
-  const creationDate = new Date(
-    creationDateJSON.Year,
-    creationDateJSON.Month,
-    creationDateJSON.Day
-  )
-
-  const currentDate = new Date()
-  const yesterdayDate = new Date(currentDate);
-  yesterdayDate.setDate(currentDate.getDate() - 1);
+  const yesterdayDate = new Date();
+  yesterdayDate.setDate(yesterdayDate.getDate() - 1);
   yesterdayDate.setHours(0,0,0,0);
-
-  const month = creationDate.toLocaleString('default', {month: 'long'});
-  const day = creationDate.getDate();
-  const year = creationDate.getFullYear();
-  const fullDate = `${month} ${day}, ${year}`;
+  const fullDate = formatDateDisplay(creationDate);
 
   if (previousListMadeOnSameDate) {
     creationDateDesc = 'today';
-  } else if (yesterdayDate.getTime() == creationDate.getTime()) {
+  } else if (areSameDate(yesterdayDate, creationDate)) {
     creationDateDesc = 'yesterday'
   } else {
     creationDateDesc = 'on ' + fullDate;
@@ -67,7 +53,7 @@ export function renderChoiceButtons(selectedSubject, previousListMadeOnSameDate)
   document.querySelectorAll('.js-choice-button').forEach((button) => {
     button.addEventListener('click', () => {
       const choice = button.dataset.choice;
-      localStorage.setItem(`action-taken-${selectedSubject.Code}`, choice);
+      localStorage.setItem(STORAGE_KEYS.actionTaken(selectedSubject.Code), choice);
       history.replaceState(null, '', './index.html');
       window.location.href = './attendance.html';
     })

@@ -1,7 +1,7 @@
 import { renderStats } from "./stats.js";
-import { renderTable } from "./table.js";
+import { updateStudentRow } from "./table.js";
 import { updateStudentStatus } from "./studentFunc.js";
-import { getStartTimeDate } from "./subjectFunc.js";
+import { getStartTimeDate } from "../utils/dateutils.js";
 import { updateMessageBox } from "./message.js";
 import { saveAttendanceToStorage } from "../../data/students.js";
 
@@ -14,6 +14,12 @@ export function initLogButton(subject, studentsAttendanceList) {
       return;
     }
 
+    const studentsMapIDAsID = new Map(studentsAttendanceList.map(student => [student['Student ID'], student]));
+    const studentsMapNameAsID = new Map(studentsAttendanceList.map(student => [student.Name, student]));
+
+    const matchingStudent = studentsMapIDAsID.get(idInput) || studentsMapNameAsID.get(idInput);
+
+    /*
     let matchingStudent;
 
     studentsAttendanceList.forEach((student) => {
@@ -21,12 +27,13 @@ export function initLogButton(subject, studentsAttendanceList) {
         matchingStudent = student;
       }
     });
+    */
 
     if (matchingStudent) {
       const startTime = getStartTimeDate(subject['Start Time']);
       updateStudentStatus(matchingStudent, startTime);
       renderStats(studentsAttendanceList);
-      renderTable(studentsAttendanceList);
+      updateStudentRow(matchingStudent);
       updateMessageBox(matchingStudent, subject);
       saveAttendanceToStorage(subject, studentsAttendanceList);
     } else {

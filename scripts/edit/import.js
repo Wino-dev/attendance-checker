@@ -1,10 +1,12 @@
-import * as XLSX from '../../node_modules/xlsx/xlsx.mjs';
 import { initTable } from './table.js';
 import { initExportButton } from './export.js';
+import { validateSheetContents } from '../validateImports/validateSheetContents.js';
+import { STORAGE_KEYS } from '../../data/storageKeys.js';
+import { XLSXtoJSON } from '../utils/importFile.js';
 
 export function initImportButton() {
 
-  const attendanceListName = localStorage.getItem('edit-attendance-name');
+  const attendanceListName = localStorage.getItem(STORAGE_KEYS.editAttendanceName);
 
   if(attendanceListName) {
     document.getElementById('edit-file-display').innerText = attendanceListName
@@ -12,49 +14,26 @@ export function initImportButton() {
 
   document.getElementById('import-attendance-file').addEventListener('change', (input) => {
     const file = input.target.files[0];
-    const fileReader = new FileReader();
-    fileReader.readAsArrayBuffer(file);
-
-    fileReader.onload = (loadedFile) => {
-      const arrayBuffer = loadedFile.target.result;
-      const data = new Uint8Array(arrayBuffer);
-      const excelFile = XLSX.read(data, {type: 'array'});
-      const firstSheet = excelFile.Sheets[excelFile.SheetNames[0]];
-      const students = XLSX.utils.sheet_to_json(firstSheet);
-
-      let lineNumber = 0;
-
-      try {
-        students.forEach(student => {
-          lineNumber++;
-
-          let checkHasFailed = '';
-
-          const propertyList = ['Name', 'Student ID', 'Status'];
-
-          propertyList.forEach((property) => {
-            if(!(property in student)){
-              checkHasFailed += `Error: ${property} doesn't exist in line ${lineNumber}\n`;
-            }
-          });
-
-          if (checkHasFailed) {
-            throw checkHasFailed;
-          };
-          
-        });
-
-        localStorage.setItem('edit-attendance-list', JSON.stringify(students));
-        localStorage.setItem('edit-attendance-name', file.name);
-        initImportButton();
-        initTable(students);
-        const exportButtonDiv = document.getElementById('export-edited-attendance-div');
-        exportButtonDiv.classList.remove('hidden');
-        exportButtonDiv.classList.add('flex');
-        initExportButton(localStorage.getItem('edit-attendance-name'), students);
-      } catch(error) {
-        alert(error);
-      }
+    const students = XLSXtoJSON(file);
+    try {
+      const propertyList = ['Name', 'Student ID', 'Status'];
+      const errors = validateSheetContents(students, propertyList, null);
+      
+      if (errors) {
+        throw errors;
+      };
+    
+      localStorage.setItem(STORAGE_KEYS.editAttendanceList, JSON.stringify(students));
+      localStorage.setItem(STORAGE_KEYS.editAttendanceName, file.name);
+      initImportButton();
+      initTable(students);
+      console.log(students);
+      const exportButtonDiv = document.getElementById('export-edited-attendance-div');
+      exportButtonDiv.classList.remove('hidden');
+      exportButtonDiv.classList.add('flex');
+      initExportButton(localStorage.getItem(STORAGE_KEYS.editAttendanceName), students);
+    } catch(error) {
+      alert(error);
     }
   })
 }

@@ -1,27 +1,23 @@
+import { CONFIG } from '../config.js';
+import { formatTimeForDisplay, formatDateString } from '../utils/dateutils.js';
+
+let clockInterval;
+
 export function renderTime() {
-  setInterval(() => {
+  if (clockInterval) clearInterval(clockInterval);
+
+  clockInterval = setInterval(() => {
     const time = new Date();
-    let hour = time.getHours();
-    let minute = (time.getMinutes()).toString();
-    let meridiem;
+    const hours = time.getHours();
+    const minutes = time.getMinutes();
 
-    if (hour >= 12) {
-      hour -= 12;
-      meridiem = "PM";
-    } else meridiem = "AM"
+    const displayHours = hours > 12 ? hours - 12 : (hours == 0 ? 12 : hours);
+    const meridiem = hours >= 12 ? 'PM' : 'AM';
+    const minuteString = minutes.toString().padStart(2, '0');
 
-    if (hour == 0) {
-      hour = 12;
-    }
-
-    if (!minute[1]) {
-      minute = '0' + minute;
-    }
-
-    document.querySelector('.js-clock').innerText = `${hour}:${minute} ${meridiem}`;
-  },500);
+    document.querySelector('.js-clock').innerText = `${displayHours}:${minuteString} ${meridiem}`
+  }, CONFIG.CLOCK_UPDATE_INTERVAL_MS)
 }
-
 
 export function renderDate() {
   const time = new Date();
@@ -33,32 +29,13 @@ export function renderDate() {
   document.getElementById('date').innerText = fullDate;
 }
 
-export function formatDateJSON(date) {
-  const month = date.Month;
-  const day = date.Day;
-  const year = date.Year;
-
-  return `${month}-${day}-${year}`;
+export function renderSubjectDetails(selectedSubject) {
+  const startTimeFormatted = formatTimeForDisplay(selectedSubject['Start Time']);
+  document.getElementById('start-time').innerText = startTimeFormatted;
+  document.getElementById('subject').innerText = selectedSubject.Name;
 }
 
-export function renderSubjectDetails(selectedSubject) {
-  document.getElementById('subject').innerText = selectedSubject.Name;
-  let startTimeString = selectedSubject['Start Time'];
-  let isHourSingleDigit;
-  if(startTimeString.length == 6) {
-    startTimeString = '0' + startTimeString;
-    isHourSingleDigit = true;
-  }
-
-  let hours = startTimeString[0] + startTimeString[1];
-  let minutes = startTimeString[3] + startTimeString[4];
-  let meridiem = startTimeString[5] + startTimeString[6];
-
-  if (isHourSingleDigit) {
-    hours = startTimeString[1];
-  }
-
-  const startTimeFormatted = `${hours}:${minutes} ${meridiem}`; 
-
-  document.getElementById('start-time').innerText = startTimeFormatted;
-} 
+export function formatDateJSON(dateJSON) {
+  const date = new Date(dateJSON.Year, parseInt(dateJSON.Month) - 1, parseInt(dateJSON.Day));
+  return formatDateString(date);
+}

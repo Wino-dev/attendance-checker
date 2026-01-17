@@ -1,12 +1,9 @@
-export const subjects = JSON.parse(localStorage.getItem('subjects'));
+import { STORAGE_KEYS } from "./storageKeys.js";
+
+export const subjects = JSON.parse(localStorage.getItem(STORAGE_KEYS.subjects));
 
 export function initSelectedSubject() {
-  const selectedSubjectCode = localStorage.getItem('selectedSubject');
-  let selectedSubject;
-  subjects.forEach((subject) => {
-    if (subject.Code == selectedSubjectCode) {
-      selectedSubject = subject;
-    };
-  });
-  return selectedSubject;
+  const selectedSubjectCode = localStorage.getItem(STORAGE_KEYS.selectedSubject);
+  const subjectMap = new Map(subjects.map(subject => [subject.Code, subject]));
+  return subjectMap.get(selectedSubjectCode);
 }
