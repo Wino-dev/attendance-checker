@@ -1,5 +1,5 @@
 import { STORAGE_KEYS } from '../../data/storageKeys.js';
-import { initExportButton } from './export.js';
+import { initExportEditButton } from './export.js';
 import { initImportButton } from './import.js';
 import { initTable } from './table.js';
 
@@ -12,6 +12,6 @@ if (studentList) {
   const exportButtonDiv = document.getElementById('export-edited-attendance-div');
   exportButtonDiv.classList.remove('hidden');
   exportButtonDiv.classList.add('flex');
-  initExportButton(localStorage.getItem(STORAGE_KEYS.editAttendanceName), studentList);
+  initExportEditButton(localStorage.getItem(STORAGE_KEYS.editAttendanceName), studentList);
   initTable(studentList);
 }

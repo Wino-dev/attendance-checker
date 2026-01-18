@@ -1,5 +1,5 @@
 import { initTable } from './table.js';
-import { initExportButton } from './export.js';
+import { initExportEditButton } from './export.js';
 import { validateSheetContents } from '../validateImports/validateSheetContents.js';
 import { STORAGE_KEYS } from '../../data/storageKeys.js';
 import { XLSXtoJSON } from '../utils/importFile.js';
@@ -43,7 +43,7 @@ export function initImportButton() {
         const exportButtonDiv = document.getElementById('export-edited-attendance-div');
         exportButtonDiv.classList.remove('hidden');
         exportButtonDiv.classList.add('flex');
-        initExportButton(localStorage.getItem(STORAGE_KEYS.editAttendanceName), students);
+        initExportEditButton(localStorage.getItem(STORAGE_KEYS.editAttendanceName), students);
       } catch(error) {
         alert(error);
       }
