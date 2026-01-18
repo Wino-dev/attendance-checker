@@ -60,13 +60,4 @@ function initSubjectButtons(container) {
       window.location.href = './previous.html';
     }
   });
-
-  /*
-  document.querySelectorAll('.js-subject-button').forEach((button) => {
-    button.addEventListener('click', () => {
-      localStorage.setItem(STORAGE_KEYS.selectedSubject, button.dataset.subjectCode);
-      window.location.href = './previous.html';
-    })
-  })
-  */
 }

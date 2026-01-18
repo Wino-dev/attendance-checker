@@ -4,6 +4,6 @@ export function initCustomButtons () {
   });
 
   document.getElementById('redirect-to-custom').addEventListener('click', () => {
-    window.location.href = './custom.html';
+    // window.location.href = './customForm.html';
   });
 }
